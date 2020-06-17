@@ -16,5 +16,10 @@ RSpec.describe "SiteLayouts", type: :feature do
       visit help_path
       expect(page).to have_link 'Help', href: help_path
     end
+
+    it "displays title with About" do
+      visit about_path
+      expect(page).to have_title full_title('About') 
+    end
   end
 end
