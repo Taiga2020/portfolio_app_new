@@ -10,7 +10,7 @@ gem 'turbolinks',              '5.2.1'
 gem 'jbuilder',                '2.10.0'
 gem 'bootsnap',                '1.4.6', require: false
 # エラー日本語化
-# gem 'rails-i18n',              '~> 6.0'
+gem 'rails-i18n',              '~> 6.0'
 
 group :development, :test do
   gem 'sqlite3',  '1.4.2'
