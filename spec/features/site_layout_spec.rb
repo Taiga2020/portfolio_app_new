@@ -20,9 +20,9 @@ RSpec.describe "SiteLayouts", type: :feature do
   end
 
   describe "title layout" do
-    it "contains アカウント登録 in signup-page title" do
-      # visit signup_path
-      pending "不明点：expect(title)??"
+    it "displays title with アカウント登録 in signup-page" do
+      visit signup_path
+      expect(page).to have_title full_title('アカウント登録')
     end
   end
 end
