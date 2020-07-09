@@ -5,9 +5,9 @@ RSpec.describe User, type: :model do
 
   let(:user) { User.new(
     name: "Example User",
-    email: "user@example.com"
-    # password: "foobar",
-    # password_confirmation: "foobar"
+    email: "user@example.com",
+    password: "foobar",
+    password_confirmation: "foobar"
   ) }
 
   describe "User" do
@@ -108,24 +108,24 @@ RSpec.describe User, type: :model do
     end
   end
 
-  # describe "password and password_confirmation" do
-  #   it "should be present (nonblank)" do
-  #     user.password = user.password_confirmation = " " * 6
-  #     expect(user).to be_invalid
-  #   end
-  #
-  #   context "5 characters" do
-  #     it "is too short" do
-  #       user.password = user.password_confirmation = "a" * 5
-  #       expect(user).to be_invalid
-  #     end
-  #   end
-  #
-  #   context "6 characters" do
-  #     it "is not too short" do
-  #       user.password = user.password_confirmation = "a" * 6
-  #       expect(user).to be_valid
-  #     end
-  #   end
-  # end
+  describe "password and password_confirmation" do
+    it "should be present (nonblank)" do
+      user.password = user.password_confirmation = " " * 6
+      expect(user).to be_invalid
+    end
+
+    context "5 characters" do
+      it "is too short" do
+        user.password = user.password_confirmation = "a" * 5
+        expect(user).to be_invalid
+      end
+    end
+
+    context "6 characters" do
+      it "is not too short" do
+        user.password = user.password_confirmation = "a" * 6
+        expect(user).to be_valid
+      end
+    end
+  end
 end
