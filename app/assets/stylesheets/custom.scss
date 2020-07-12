@@ -71,3 +71,11 @@ p {
   // margin-right: 5px;
   // margin-left: 5px;
 }
+
+/* ログイン画面（users/new.html） */
+
+.container-login {
+  @extend .container-fluid;
+  max-width: 576px;
+  padding: 2rem;
+}

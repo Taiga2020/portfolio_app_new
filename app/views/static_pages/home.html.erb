@@ -2,7 +2,7 @@
 <p>Find me in app/views/static_pages/home.html.erb</p> -->
 
 <%# provide(:title, "Home") %>
-<h1>Welcome to Anime Searcher!</h1>
+<h1>My Anime Pocketにようこそ!</h1>
 
 <%# if user_signed_in? %>
 
@@ -24,10 +24,10 @@
   <div>
     <!-- ゲストログイン画面に移行　-->
     <%#= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
-    <%= link_to "ゲストログイン（閲覧用）", "#", method: :post %>
+    <%= link_to "ゲストログイン（閲覧用）", "#", class: 'post' %>
   </div>
 
-  <br /><br />
+  <br />
 
   <div>
     <!-- 新規登録画面に移行　-->
