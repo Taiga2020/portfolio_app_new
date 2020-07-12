@@ -2,18 +2,35 @@
 
 <!-- Bootstrap確認用 -->
 
+<h3>マイページ（ユーザー画面）</h3>
+
 <div class="container">
   <div class="row">
-    <div class="col bg-primary">
-      form
+    <!-- PC画面の場合 -->
+    <div class="col-md-3 bg-secondary" style="height:600px;">
+    <!-- スマホ画面の場合 -->
+    <!-- <div class="col-md-3 bg-secondary" style="height:300px;"> -->
+      サイドバー（ユーザー情報）
+      <h3>
+        <%= gravatar_for @user %><br />
+        <%= @user.name %>
+      </h3>
+      <br />
+      <p>ユーザー名： <%= @user.name %></p>
+      <p>メールアドレス： <%= @user.email %></p>
+      <p>現在時刻：<%= Time.now %></p>
     </div>
-    <div class="col bg-secondary">
-      figure
-    </div>
-  </div>
-  <div class="row">
-    <div class="col bg-warning">
-      log
+    <div class="col-md-9 bg-secondary" style="height:600px;">
+      <div class="row">
+        <div class="col bg-primary" style="height:50px;">
+          サブコンテンツ
+        </div>
+      </div>
+      <div class="row">
+        <div class="col bg-danger" style="height:550px;">
+          お気に入りアニメリスト
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -26,6 +43,10 @@
 <p>※ログインしています！</p>
 
 <!-- Userコントローラのshowアクションに変数userを定義 -->
+<h1>
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+</h1>
 <br />
 <p>ユーザー名　　： <%= @user.name %></p>
 <p>メールアドレス： <%= @user.email %></p>
