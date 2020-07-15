@@ -22,9 +22,9 @@ textarea {
   text-align: center;
 }
 
-.center h1 {
-  margin-bottom: 10px;
-}
+// .center h1 {
+//   margin-bottom: 10px;
+// }
 
 /* typography */
 
@@ -86,7 +86,7 @@ $gray-medium-light: #eaeaea;
   @include box_sizing;
 }
 
-/* ログイン画面（users/new.html） */
+/* ユーザー登録・ログイン画面（users/new.html, sessions/new.html） */
 
 // .container-login {
 //   @extend .container-fluid;
@@ -94,18 +94,18 @@ $gray-medium-light: #eaeaea;
 //   padding: 2rem;
 // }
 
-.signup-container {
+.form-container {
   width: 100%;
   max-width: 330px;
   margin: auto;
   padding-top: 1rem !important;
 }
 
-.signup-logo-img {
+.form-logo-img {
   text-align: center;
 }
 
-.signup-title {
+.form-title {
   text-align: center;
   font-weight: normal;
   font-size: 1.5rem;
@@ -119,6 +119,10 @@ $gray-medium-light: #eaeaea;
 .form-submit {
   width: 100%;
   margin-top: 1rem;
+}
+
+.form-go-to-signup-or-login {
+  font-size: 0.9em;
 }
 
 #error_explanation {
