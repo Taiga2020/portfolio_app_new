@@ -9,10 +9,10 @@ RSpec.describe "SiteLayouts", type: :feature do
       expect(page).to have_link nil, href: root_path, count: 2
     end
     it "contains about link" do
-      expect(page).to have_link 'About', href: about_path
+      expect(page).to have_link 'このAppについて', href: about_path
     end
     it "contains help link" do
-      expect(page).to have_link 'Help', href: help_path
+      expect(page).to have_link 'ご利用方法', href: help_path
     end
     it "contains signup link" do
       expect(page).to have_link 'アカウント登録', href: signup_path
