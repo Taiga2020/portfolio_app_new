@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       #登録(保存)成功
-      flash[:success] = "Anime Searcher にようこそ！"
+      log_in @user
+      flash[:success] = "アカウントの作成に成功しました"
       redirect_to @user #user_url(@user)
     else
       #登録(保存)失敗

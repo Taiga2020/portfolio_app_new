@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user && user.authenticate(params[:session][:password])
-      # メモ：ログイン後に「マイページ」にリダイレクトさせる
+      log_in(user)
+      redirect_to user #user_url(user)と同値。（/users/1, /users/2...）
     else
       flash.now[:danger] = "メールアドレスまたはパスワードが正しくありません"
       render 'new'
@@ -14,6 +15,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    # メモ：ログアウトさせる
+    log_out if logged_in?
+    redirect_to root_url
   end
 end

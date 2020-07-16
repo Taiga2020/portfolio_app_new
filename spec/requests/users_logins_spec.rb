@@ -2,29 +2,48 @@ require 'rails_helper'
 
 RSpec.describe "UsersLogins", type: :request do
 
-  # let(:user) { create(:user) }
+  let(:user) { create(:user) }
 
   describe "GET /login" do
-    it "has a danger flash message because of invalid login information" do
-      get login_path
-      post login_path, params: {
-        session: {
-          email: "",
-          password: ""
+    context "invaild information" do
+      it "fails login with flash danger message" do
+        get login_path
+        post login_path, params: {
+          session: {
+            email: "",
+            password: ""
+          }
         }
-      }
-      expect(flash[:danger]).to be_truthy
+        expect(flash[:danger]).to be_truthy
+        expect(is_logged_in?).to be_falsey
+      end
     end
 
-    # it "has no danger flash message because of valid login information" do
-    #   get login_path
-    #   post login_path, params: {
-    #     sessions: {
-    #       email: user.email,
-    #       password: user.password
-    #     }
-    #   }
-    #   expect(flash[:danger]).to be_falsey
-    # end
+    context "vaild information" do
+      it "succeeds login with no flash danger message" do
+        get login_path
+        post login_path, params: {
+          session: {
+            email: user.email,
+            password: user.password
+          }
+        }
+        expect(flash[:danger]).to be_falsey
+        expect(is_logged_in?).to be_truthy
+      end
+
+      it "succeeds login and logout" do
+        get login_path
+        post login_path, params: {
+          session: {
+            email: user.email,
+            password: user.password
+          }
+        }
+        expect(is_logged_in?).to be_truthy
+        delete logout_path
+        expect(is_logged_in?).to be_falsey
+      end
+    end
   end
 end
