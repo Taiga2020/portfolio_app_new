@@ -59,13 +59,14 @@ RSpec.describe "Logins", type: :feature do
       visit login_path
       fill_in 'メールアドレス', with: user.email
       fill_in 'パスワード', with: 'password'
-      find(".form-submit").click
+      find(".form-submit").click # click_on 'ログイン'
       expect(current_path).to eq user_path(1)
       expect(page).to have_selector '.show-container'
       expect(page).not_to have_link 'ログイン', href: login_path
       expect(page).to have_link 'ログアウト', href: logout_path
       click_on 'ログアウト'
       expect(current_path).to eq root_path
+      expect(current_path).not_to eq user_path(1)
       expect(page).to have_selector '.home-container'
       expect(page).to have_link 'ログイン', href: login_path
       expect(page).not_to have_link 'ログアウト', href: logout_path
