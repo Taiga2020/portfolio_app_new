@@ -37,7 +37,9 @@ module SessionsHelper
     !current_user.nil?
   end
 
-  # 永続セッションを破棄する
+  # 永続セッション（記憶トークン）を破棄し、remember_tokenを空にする
+  # 注(比較)：「forgetメソッド(モデルメソッド)」は【記憶ダイジェスト】を破棄し、
+  #         remember_digestに【nilを代入】している
   def forget(user)
     user.forget
     cookies.delete(:user_id)

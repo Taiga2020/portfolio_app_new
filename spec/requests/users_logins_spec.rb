@@ -4,6 +4,17 @@ RSpec.describe "UsersLogins", type: :request do
 
   let(:user) { create(:user) }
 
+  # テスト専用のログインメソッド
+  def post_valid_information(remember_me = 0)
+    post login_path, params: {
+      session: {
+        email: user.email,
+        password: user.password,
+        remember_me: remember_me
+      }
+    }
+  end
+
   describe "GET /login" do
     context "invaild information" do
       it "fails login with flash danger message" do
@@ -46,4 +57,51 @@ RSpec.describe "UsersLogins", type: :request do
       end
     end
   end
+
+  it "does not logout twice" do
+    get login_path #通常のログイン
+    post_valid_information(0)
+    expect(is_logged_in?).to be_truthy
+    follow_redirect!
+    expect(request.fullpath).to eq '/users/1'
+
+    delete logout_path #通常のログアウト(1回目)
+    expect(is_logged_in?).to be_falsey
+    follow_redirect!
+    expect(request.fullpath).to eq '/'
+
+    delete logout_path #ログアウト(2回目)
+    follow_redirect!
+    expect(request.fullpath).to eq '/'
+  end
+
+  context "check remember_me" do
+    it "has remember_token after login" do
+      get login_path
+      post_valid_information(1)
+      expect(is_logged_in?).to be_truthy
+      expect(cookies[:remember_token]).not_to be_nil
+    end
+
+    it "has no remember_token after login and logout" do
+      get login_path
+      post_valid_information(1)
+      expect(is_logged_in?).to be_truthy
+      expect(cookies[:remember_token]).not_to be_empty #remember_tokenに値を入れる
+      delete logout_path
+      expect(is_logged_in?).to be_falsey
+      expect(cookies[:remember_token]).to be_empty #値が入ったremember_tokenをdeleteメソッドで空にする
+    end
+  end
+
+  context "uncheck remember_me" do
+    it "has no remember_token after login" do
+      get login_path
+      post_valid_information(0)
+      expect(is_logged_in?).to be_truthy
+      expect(cookies[:remember_token]).to be_nil
+      # ↑remember_tokenの初期値はnil。そもそもdeleteできないのでnilのまま(?)
+    end
+  end
+
 end
