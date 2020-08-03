@@ -30,20 +30,32 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    if guest_user
+      flash[:danger] = "ゲストユーザーは編集できません"
+      flash[:warning] = "ログインしてください"
+      redirect_to root_url
+    else
+      @user = User.find(params[:id])
+    end
   end
 
   def update
-    @user = User.find(params[:id])
-    if @user.update_attributes(user_params)
-      #編集(更新)成功
-      flash[:success] = "アカウントの編集に成功しました"
-      redirect_to @user #user_url(@user)
+    if guest_user
+      flash[:danger] = "ゲストユーザーは更新できません"
+      flash[:warning] = "ログインしてください"
+      redirect_to root_url
     else
-      #編集(更新)失敗
-      flash[:danger] = "アカウントの編集に失敗しました"
-      # redirect_to edit_user_path(@user) #(旧)render 'edit'
-      render 'edit'
+      @user = User.find(params[:id])
+      if @user.update_attributes(user_params)
+        #編集(更新)成功
+        flash[:success] = "アカウントの編集に成功しました"
+        redirect_to @user #user_url(@user)
+      else
+        #編集(更新)失敗
+        flash[:danger] = "アカウントの編集に失敗しました"
+        # redirect_to edit_user_path(@user) #(旧)render 'edit'
+        render 'edit'
+      end
     end
   end
 
