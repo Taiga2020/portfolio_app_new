@@ -17,8 +17,9 @@
       </h3>
       <br />
       <p>ユーザー名：<br/><%= @user.name %></p>
-      <p>メールアドレス：<br/><%= @user.email %></p>
-      <p>現在時刻：<%= Time.now %></p>
+      <% if current_user?(@user) %>
+        <p>メールアドレス：<br/><%= @user.email %></p>
+      <% end %>
     </div>
     <div class="col-md-9 bg-secondary" style="height:600px;">
       <div class="row">

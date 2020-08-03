@@ -1,0 +1,12 @@
+<% provide(:title, 'ユーザー一覧') %>
+<h1>ユーザー一覧</h1>
+
+<%= will_paginate @users, list_classes: %w(pagination justify-content-center),
+                  previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+
+<ul class="users">
+  <%= render @users %>
+</ul>
+
+<%= will_paginate @users, list_classes: %w(pagination justify-content-center),
+                  previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>

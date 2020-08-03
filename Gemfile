@@ -3,6 +3,10 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails',                   '6.0.3.1'
 gem 'bcrypt',                  '3.1.13'
+gem 'faker',                   '2.1.2'
+gem 'will_paginate',           '3.1.8'
+# gem 'bootstrap-will_paginate', '1.0.0'
+gem 'will_paginate-bootstrap4'
 gem 'puma',                    '4.3.5'
 gem 'sass-rails',              '6.0.0'
 gem 'webpacker',               '4.2.2'
@@ -13,8 +17,8 @@ gem 'bootsnap',                '1.4.6', require: false
 gem 'rails-i18n',              '~> 6.0'
 
 group :development, :test do
-  gem 'sqlite3',  '1.4.2'
-  gem 'byebug',   '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'sqlite3',               '1.4.2'
+  gem 'byebug',                '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails' #テスト用 "Rspec"
   gem 'factory_bot_rails' #テスト用
 end

@@ -32,9 +32,29 @@ module SessionsHelper
     end
   end
 
+  def current_user?(user)
+    user == current_user
+  end
+
+  # def current_user?(user)
+  #  user && user == current_user
+  # end
+
   # ユーザーがログインしているかどうかを判別する（ログインしている場合はtrue,していなければfalse）
   def logged_in?
     !current_user.nil?
+  end
+
+  # getリクエストをさせる際、その直前に表示されていたページのリンクを記憶する
+  # ログイン後、記憶したリンクがあるならそこにリダイレクトさせる
+  def store_location
+    session[:forwording_url] = request.original_url if request.get?
+  end
+
+  # 記憶したリンクまたは任意のリンクにリダイレクトさせる
+  def redirect_back_or(default)
+    redirect_to(session[:forwording_url] || default)
+    session.delete(:forwording_url)
   end
 
   # 永続セッション（記憶トークン）を破棄し、remember_tokenを空にする
