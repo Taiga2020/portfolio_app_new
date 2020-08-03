@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "UsersLogins", type: :request do
+  include SessionsHelper
 
   let(:user) { create(:user) }
 

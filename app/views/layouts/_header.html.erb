@@ -22,11 +22,24 @@
           <li class="nav-item">
             <%= link_to "ご利用方法", help_path, class:"nav-link" %>
           </li>
+          <li class="nav-item">
+            <%= link_to "ユーザー一覧", users_path, class:"nav-link" %>
+          </li>
         </ul>
 
         <ul class="navbar-nav">
           <% if logged_in? %>
-            <%= link_to "プロフィール", user_path(current_user), class:"nav-item nav-link" %>
+            <li class="nav-item dropdown border-right">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                プロフィール
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(255,240,240,1)">
+                <%= link_to "Myプロフィール", user_path(current_user), class:"dropdown-item dropdown-link" %>
+                <div class="dropdown-divider"></div>
+                <%= link_to "プロフィール編集", edit_user_path(current_user), class:"dropdown-item dropdown-link" %>
+              </div>
+            </li>
+            <%#= link_to "プロフィール編集", edit_user_path(current_user), class:"dropdown-item" %>
             <%= link_to "ログアウト", logout_path, method: :delete, class:"nav-item nav-link rounded btn-logout-extend", style:"background-color:#F08080" %>
           <% else %>
           <!-- <li class="nav-item dropdown border-right">
