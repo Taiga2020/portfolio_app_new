@@ -19,7 +19,7 @@
           <li class="nav-item border-right">
             <%= link_to "このAppについて", about_path, class:"nav-link" %>
           </li>
-          <li class="nav-item">
+          <li class="nav-item border-right">
             <%= link_to "ご利用方法", help_path, class:"nav-link" %>
           </li>
           <li class="nav-item">
@@ -35,8 +35,13 @@
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(255,240,240,1)">
                 <%= link_to "Myプロフィール", user_path(current_user), class:"dropdown-item dropdown-link" %>
-                <div class="dropdown-divider"></div>
-                <%= link_to "プロフィール編集", edit_user_path(current_user), class:"dropdown-item dropdown-link" %>
+                <% if guest_user %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "（ゲスト編集不可）", "#", class:"dropdown-item dropdown-link" %>
+                <% else %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "プロフィール編集", edit_user_path(current_user), class:"dropdown-item dropdown-link" %>
+                <% end %>
               </div>
             </li>
             <%#= link_to "プロフィール編集", edit_user_path(current_user), class:"dropdown-item" %>

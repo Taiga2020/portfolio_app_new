@@ -73,4 +73,9 @@ module SessionsHelper
     @current_user = nil
   end
 
+  # ゲストユーザー
+  def guest_user
+    current_user == User.find_by(email: 'example-1@railstutorial.org')
+  end
+
 end
