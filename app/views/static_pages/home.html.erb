@@ -1,0 +1,66 @@
+<!-- <h1>StaticPages#home</h1>
+<p>Find me in app/views/static_pages/home.html.erb</p> -->
+
+<%# provide(:title, "Home") %>
+
+<%# if user_signed_in? %>
+
+<!-- ログインしている場合 -->
+  <!-- <h2>現在 <%#= current_user.name %> さんがログインしています</h2> -->
+  <!-- <h4>メールアドレス： <%#= current_user.email %></h4> -->
+  <!-- <div> -->
+    <%# unless current_user.email == "guest@example.com" %>
+      <%#= link_to "ユーザー情報の変更", edit_user_registration_path, class: 'post' %>
+    <%# end %>
+  <!-- </div> -->
+  <!-- <div> -->
+    <%#= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+  <!-- </div> -->
+
+<%# else %>
+
+<!-- ログインしていない場合 -->
+<div class="center jumbotron home-container">
+  <h1>My Anime Pocketにようこそ!</h1>
+
+  <div>
+    <!-- ゲストログイン画面に移行　-->
+    <%#= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
+    <%= link_to "ゲストログイン（閲覧用）", guest_path, method: :post, class: "btn btn-lg btn-info" %>
+  </div><br />
+
+  <div>
+    <!-- 新規登録画面に移行　-->
+    <%#= link_to "新規登録", new_user_registration_path, class: 'post' %>
+    <%= link_to "アカウント登録", signup_path, class: "btn btn-lg btn-primary" %>
+  </div><br />
+
+  <div>
+    <!-- ログイン画面に移行　-->
+    <%#= link_to "ログイン", new_user_session_path, class: 'post' %>
+    <%= link_to "ログイン", login_path, class: "btn btn-lg btn-primary" %>
+  </div>
+</div>
+
+<%# end %>
+
+<!-- <script>
+  $(window).on('load', function() {
+    $('body').addClass('bg-dark');
+  });
+</script>
+
+<br>
+<button type="button" class="btn btn-primary" onclick="$('.toast').toast('show')">トーストを表示する</button>
+<div class="toast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <img src="https://www.petitmonte.com/images/manabu.gif" class="mr-2" alt="">
+    <strong class="mr-auto">タイトル</strong>
+    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="toast-body">
+    メッセージをココに記述する。
+  </div>
+</div> -->

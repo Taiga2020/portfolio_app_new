@@ -1,0 +1,74 @@
+<header>
+  <nav class="navbar navbar-expand-lg fixed-top navbar-light"
+       style="background-color:rgba(255,204,204,0.95)">
+    <div class="container">
+      <!-- ロゴ -->
+      <%= link_to image_tag("1_Primary_logo_on_transparent_376x63.png",
+                            class: "navbar-brand", alt: "Logo", height: "40px", width: "200px"), "/" %>
+      <!-- ハンバーガーメニュー ボタン -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- ハンバーガーメニュー コンテンツ -->
+      <div class="collapse navbar-collapse center" id="navbarNavDropdown">
+
+        <ul class="navbar-nav mr-auto">　
+          <li class="nav-item border-right">
+            <%= link_to "ホーム", root_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item border-right">
+            <%= link_to "このAppについて", about_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item border-right">
+            <%= link_to "ご利用方法", help_path, class:"nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ユーザー一覧", users_path, class:"nav-link" %>
+          </li>
+        </ul>
+
+        <ul class="navbar-nav">
+          <% if logged_in? %>
+            <li class="nav-item dropdown border-right">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                プロフィール
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background-color:rgba(255,240,240,1)">
+                <%= link_to "Myプロフィール", user_path(current_user), class:"dropdown-item dropdown-link" %>
+                <% if guest_user %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "（ゲスト編集不可）", "#", class:"dropdown-item dropdown-link" %>
+                <% else %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to "プロフィール編集", edit_user_path(current_user), class:"dropdown-item dropdown-link" %>
+                <% end %>
+              </div>
+            </li>
+            <%#= link_to "プロフィール編集", edit_user_path(current_user), class:"dropdown-item" %>
+            <%= link_to "ログアウト", logout_path, method: :delete, class:"nav-item nav-link rounded btn-logout-extend", style:"background-color:#F08080" %>
+          <% else %>
+          <!-- <li class="nav-item dropdown border-right">
+           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             (Dropdown)
+           </a>
+           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+             <a class="dropdown-item" href="#">Action</a>
+             <a class="dropdown-item" href="#">Another action</a>
+             <div class="dropdown-divider"></div>
+             <a class="dropdown-item" href="#">Something else here</a>
+           </div>
+          </li> -->
+          <!-- <li class="nav-item"> -->
+            <%#= link_to "アカウント登録", signup_path, class:"nav-link" %>
+            <%= link_to "アカウント登録", signup_path, class:"nav-item nav-link" %>
+          <!-- </li> -->
+          <!-- <li class="nav-item rounded" style="background-color:#F08080"> -->
+            <%= link_to "ログイン", login_path, class:"nav-item nav-link rounded btn-login-extend", style:"background-color:#F08080" %>
+          <!-- </li> -->
+          <% end %>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+</header>

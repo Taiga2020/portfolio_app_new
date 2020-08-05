@@ -1,0 +1,57 @@
+<% provide(:title, @user.name) %>
+
+<!-- Bootstrap確認用 -->
+
+<h3>マイページ（ユーザー画面）</h3>
+
+<div class="container show-container">
+  <div class="row">
+    <!-- PC画面の場合 -->
+    <div class="col-md-3 bg-secondary" style="height:600px;">
+    <!-- スマホ画面の場合 -->
+    <!-- <div class="col-md-3 bg-secondary" style="height:300px;"> -->
+      サイドバー（ユーザー情報）
+      <h3>
+        <%= gravatar_for @user %><br />
+        <%= @user.name %>
+      </h3>
+      <br />
+      <p>ユーザー名：<br/><%= @user.name %></p>
+      <% if current_user?(@user) %>
+        <p>メールアドレス：<br/><%= @user.email %></p>
+      <% end %>
+    </div>
+    <div class="col-md-9 bg-secondary" style="height:600px;">
+      <div class="row">
+        <div class="col bg-primary" style="height:50px;">
+          サブコンテンツ
+        </div>
+      </div>
+      <div class="row">
+        <div class="col bg-danger" style="height:550px;">
+          お気に入りアニメリスト
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+
+<!-- 仮実装ページ -->
+
+<h3>マイページ（ユーザー画面）</h3>
+
+<p>※ログインしています！</p>
+
+<!-- Userコントローラのshowアクションに変数userを定義 -->
+<h1>
+  <%= gravatar_for @user %>
+  <%= @user.name %>
+</h1>
+<br />
+<p>ユーザー名　　： <%= @user.name %></p>
+<p>メールアドレス： <%= @user.email %></p>
+<p>アカウント作成時刻： <%= @user.created_at %></p>
+<p>アカウント編集時刻： <%= @user.updated_at %></p>
+
+<p>現在時刻：<%= Time.now %></p>
