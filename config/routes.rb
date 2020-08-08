@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create' #新しいセッションの作成（ログイン）
   delete '/logout', to: 'sessions#destroy' #セッションの削除（ログアウト）
   post '/guest', to: 'guest_sessions#create' #ゲストログイン
-  # post 'users/guest_login', to: 'sessions#new_guest'
   resources :users
+  resources :account_activations, only: [:edit]
 end

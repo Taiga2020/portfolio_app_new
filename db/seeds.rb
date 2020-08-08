@@ -3,7 +3,8 @@ User.create!(name:  "Admin User",
              email: "example@railstutorial.org",
              password:              "foobar",
              password_confirmation: "foobar",
-             admin: true)
+             admin: true,
+             activated: true)
 
 # 追加のユーザーをまとめて生成する
 99.times do |n|
@@ -13,5 +14,6 @@ User.create!(name:  "Admin User",
   User.create!(name:  name,
                email: email,
                password:              password,
-               password_confirmation: password)
+               password_confirmation: password,
+               activated: true)
 end

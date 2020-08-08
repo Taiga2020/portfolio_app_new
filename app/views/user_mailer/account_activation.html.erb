@@ -1,0 +1,11 @@
+<h1>Anime Searcher</h1>
+
+<p>こんにちは <%= @user.name %> さん,<p>
+
+<p>
+Anime Searcher へのご登録ありがとうございます! 下記のリンクをクリックして登録を完了し、<br/>
+アカウントを有効にしてください:
+</p>
+
+<%= link_to "アカウントを有効にする", edit_account_activation_url(@user.activation_token,
+                                                    email: @user.email) %>

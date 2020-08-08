@@ -9,10 +9,8 @@ FactoryBot.define do
     # sequence(:email) { |n| "tester#{n}@example.com" }
     password { "password" }
     password_confirmation { "password" }
-
-    # factory :admin do
-      admin { true }
-    # end
+    admin { true }
+    activated { true }
   end
   # end
 
@@ -23,6 +21,7 @@ FactoryBot.define do
     email { Faker::Internet.email }
     password { "password" }
     password_confirmation { "password" }
+    activated { true }
   end
 
     # trait :c do
@@ -36,6 +35,7 @@ FactoryBot.define do
     email { "duchess@example.gov" }
     password { "foobar" }
     password_confirmation { "foobar" }
+    activated { true }
   end
   # end
 
