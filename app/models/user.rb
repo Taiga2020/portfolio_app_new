@@ -53,14 +53,31 @@ class User < ApplicationRecord
 
   # remember_tokenに保存されたトークン①が、
   # DB(remember_digest)に保存された暗号化トークン②と一致しているとtrueを返す
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  # def authenticated?(remember_token)
+  #   return false if remember_digest.nil?
+  #   BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  # end
+
+  # remember_token,activation_tokenの両方でこのメソッドを利用できるように変更
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+    return false if digest.nil?
+    BCrypt::Password.new(digest).is_password?(token)
   end
 
   # ユーザーのログイン情報(記憶ダイジェスト)を破棄する（nilを代入する）
   def forget
     update_attribute(:remember_digest, nil)
+  end
+
+  # アカウントを有効にする
+  def activate
+    update_attribute(:activated, true)
+  end
+
+  # 有効化用のメールを送信する
+  def send_activation_email
+    UserMailer.account_activation(self).deliver_now
   end
 
   private

@@ -25,7 +25,8 @@ module SessionsHelper
       @current_user ||= User.find_by(id: user_id)
     elsif (user_id = cookies.signed[:user_id]) #永続cookiesが存在する場合（永続セッション）
       user = User.find_by(id: user_id)
-      if user && user.authenticated?(cookies[:remember_token])
+      # if user && user.authenticated?(cookies[:remember_token])
+      if user && user.authenticated?(:remember, cookies[:remember_token])
         log_in user #単なる「ログイン」ではなく、"対応するセッションに"ログインする意。
         @current_user = user
       end
