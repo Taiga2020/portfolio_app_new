@@ -5,11 +5,13 @@ class UsersController < ApplicationController
   before_action :admin_user,     only: :destroy
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 10)
+    # @users = User.paginate(page: params[:page], per_page: 10)
+    @users = User.where(activated: true).paginate(page: params[:page], per_page: 10)
   end
 
   def show
     @user = User.find(params[:id])
+    redirect_to root_url and return unless @user.activated?
   end
 
   def new
@@ -19,10 +21,15 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #登録(保存)成功
-      log_in @user
-      flash[:success] = "アカウントの作成に成功しました"
-      redirect_to @user #user_url(@user)
+      # #登録(保存)成功
+      # log_in @user
+      # flash[:success] = "アカウントの作成に成功しました"
+      # redirect_to @user #user_url(@user)
+
+      # UserMailer.account_activation(@user).deliver_now # >> models/user.rb
+      @user.send_activation_email
+      flash[:info] = "認証用メールを送信しました。登録時のメールアドレスから認証を済ませてください"
+      redirect_to root_url
     else
       #登録(保存)失敗
       render 'new'

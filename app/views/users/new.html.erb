@@ -3,7 +3,7 @@
   <!-- <div class="container-login"> -->
   <div class="container form-container">
     <h1 class="form-title">新規アカウント登録</h1>
-    <%= form_with(model: @user, local: true) do |f| %>
+    <%= form_with(model: @user, url: signup_path, local: true) do |f| %>
       <%= render 'shared/error_messages' %>
 
       <div class="form-group">
