@@ -28,7 +28,8 @@
         </div>
       <% end %>
 
-      <p class="form-go-to-signup-or-login"> ▶︎ <%= link_to "新しくアカウントを作成する", signup_path %></p>
+      <p class="form-go-to-signup-or-login"> ▶︎ 新しくアカウントを<%= link_to "作成する", signup_path %></p>
+      <p class="form-go-to-password-reset"> ▶︎ パスワードを忘れた場合は<%= link_to "こちら", new_password_reset_path %></p>
     </div>
   </div>
 </div>

@@ -53,7 +53,7 @@ class UsersController < ApplicationController
       redirect_to root_url
     else
       @user = User.find(params[:id])
-      if @user.update_attributes(user_params)
+      if @user.update(user_params)
         #編集(更新)成功
         flash[:success] = "アカウントの編集に成功しました"
         redirect_to @user #user_url(@user)

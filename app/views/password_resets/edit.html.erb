@@ -1,0 +1,26 @@
+<% provide(:title, "パスワード再設定") %>
+<div class="row bg-light">
+  <div class="container">
+    <div class="form-container jumbotron">
+      <h1 class="form-title">パスワード再設定</h1>
+      <%= form_with(model: @user, url: password_reset_path(params[:id]), scope: :password_reset, local: true) do |f| %>
+        <%= render 'shared/error_messages' %>
+
+        <%= hidden_field_tag :email, @user.email %>
+        <div class="form-group">
+          <%#= f.label :password, "パスワード", class: 'form-control-label' %>
+          <%= f.password_field :password, class: 'form-control', placeholder: "パスワード" %>
+        </div>
+
+        <div class="form-group">
+          <%#= f.label :password_confirmation, "パスワード（再入力）", class: 'form-control-label' %>
+          <%= f.password_field :password_confirmation, class: 'form-control', placeholder: "パスワード（再入力）" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "送信", class: "btn btn-info btn-lg form-submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
