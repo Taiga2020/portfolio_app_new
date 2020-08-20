@@ -21,6 +21,7 @@ group :development, :test do
   gem 'byebug',                '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails' #テスト用 "Rspec"
   gem 'factory_bot_rails' #テスト用
+  gem 'rails-controller-testing', '1.0.5' #テスト用(assigns)
 end
 
 group :development do
