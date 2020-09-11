@@ -5,27 +5,37 @@
 #   gem 'sqlite3'
 #
 default: &default
-  adapter: sqlite3
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  adapter: mysql2
+  encoding: utf8
+  reconnect: false
+  database: animepocket
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  pool: 5
+  username: adminuser
+  password: texia2020
+  socket: /var/lib/mysql/mysql.sock
+  host: anime-mysql.cinskxgqu4pf.ap-northeast-1.rds.amazonaws.com
 
 development:
   <<: *default
-  database: db/development.sqlite3
+  database: animepocket_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/test.sqlite3
+  database: animepocket_test
 
 production:
-  adapter: postgresql
-  encoding: unicode
+  <<: *default
+  database: animepocket_production
+
+  # adapter: postgresql
+  # encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://railsguides.jp/configuring.html#データベース接続をプールする
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  database: sample_app_production
-  username: sample_app
-  password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>
+  # pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # database: sample_app_production
+  # username: sample_app
+  # password: <%= ENV['SAMPLE_APP_DATABASE_PASSWORD'] %>

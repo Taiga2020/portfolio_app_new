@@ -15,13 +15,21 @@ gem 'jbuilder',                '2.10.0'
 gem 'bootsnap',                '1.4.6', require: false
 # エラー日本語化
 gem 'rails-i18n',              '~> 6.0'
+gem 'mysql2'
 
 group :development, :test do
-  gem 'sqlite3',               '1.4.2'
+  # gem 'sqlite3',               '1.4.2' # mysqlに移行
   gem 'byebug',                '11.1.3', platforms: [:mri, :mingw, :x64_mingw]
   gem 'rspec-rails' #テスト用 "Rspec"
   gem 'factory_bot_rails' #テスト用
   gem 'rails-controller-testing', '1.0.5' #テスト用(assigns)
+  # Capistranoの導入
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano-rbenv-vars'
+  gem 'capistrano3-puma'
 end
 
 group :development do
@@ -39,7 +47,7 @@ group :test do
 end
 
 group :production do
-  gem 'pg', '1.2.3'
+  # gem 'pg', '1.2.3' # mysqlに移行
 end
 
 # gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
