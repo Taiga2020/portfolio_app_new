@@ -65,6 +65,6 @@ server "54.248.168.59",
   roles: %w{app db web}
 
 set :ssh_options, {
-  keys: %w(~/.ssh/animepocket_key_2_rsa),
+  keys: %w(~/.ssh/animepocket_key_rsa),
   forward_agent: true
 }
