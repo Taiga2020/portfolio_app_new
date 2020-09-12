@@ -60,9 +60,8 @@
 #     # password: "please use keys"
 #   }
 
-server "54.248.168.59",
-  user: "ec2adminuser",
-  roles: %w{app db web}
+server "54.248.168.59", user: "ec2adminuser", roles: %w{web}
+server "54.248.168.59", user: "ec2adminuser", roles: %w{app db}
 
 set :ssh_options, {
   keys: %w(~/.ssh/animepocket_key_rsa),
