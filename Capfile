@@ -7,8 +7,9 @@ require "capistrano/deploy"
 # 追記
 require 'capistrano/rbenv'
 require 'capistrano/bundler'
-require 'capistrano/rails/assets'
-require 'capistrano/rails/migrations'
+require 'capistrano/rails'
+# require 'capistrano/rails/assets'
+# require 'capistrano/rails/migrations'
 
 # Load the SCM plugin appropriate to your project:
 #
