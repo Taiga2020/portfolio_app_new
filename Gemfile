@@ -23,13 +23,13 @@ group :development, :test do
   gem 'rspec-rails' #テスト用 "Rspec"
   gem 'factory_bot_rails' #テスト用
   gem 'rails-controller-testing', '1.0.5' #テスト用(assigns)
-  # Capistranoの導入
-  gem 'capistrano'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rails'
-  gem 'capistrano-rbenv'
-  gem 'capistrano-rbenv-vars'
-  gem 'capistrano3-puma'
+  # Capistrano(未実装)
+  # gem 'capistrano'
+  # gem 'capistrano-bundler'
+  # gem 'capistrano-rails'
+  # gem 'capistrano-rbenv'
+  # gem 'capistrano-rbenv-vars'
+  # gem 'capistrano3-puma'
 end
 
 group :development do
