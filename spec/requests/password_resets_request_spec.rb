@@ -139,7 +139,7 @@ RSpec.describe "PasswordResets", type: :request do
       expect(flash[:success]).to be_truthy
       expect(is_logged_in?).to be_truthy
       follow_redirect!
-      expect(request.fullpath).to eq "/users/1"
+      expect(response.body).to include 'Michael Example'
     end
   end
 

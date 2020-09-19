@@ -42,23 +42,21 @@ RSpec.describe "UsersEdits", type: :request do
 
       it "does not go to /users/2/edit because of login as wrong user" do
         log_in_as(user)
-        expect(request.fullpath).to eq '/users/1'
+        expect(response.body).to include 'Michael Example'
         get edit_user_path(other_user)
-        expect(request.fullpath).to eq '/users/2/edit'
         follow_redirect!
         expect(request.fullpath).to eq '/'
       end
 
       it "does not redirect update because of login as wrong user" do
         log_in_as(user)
-        expect(request.fullpath).to eq '/users/1'
+        expect(response.body).to include 'Michael Example'
         get edit_user_path(other_user)
-        expect(request.fullpath).to eq '/users/2/edit'
         follow_redirect!
         expect(request.fullpath).to eq '/'
         patch_valid_information
-        # follow_redirect!
-        expect(request.fullpath).to eq '/users/1'
+        follow_redirect!
+        expect(response.body).to include 'Michael Example'
       end
 
       it "is invalid edit information" do
