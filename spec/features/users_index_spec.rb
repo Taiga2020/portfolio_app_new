@@ -1,3 +1,5 @@
+require 'rails_helper'
+
 RSpec.feature "UsersIndex", type: :feature do
 
   # include SupportModule

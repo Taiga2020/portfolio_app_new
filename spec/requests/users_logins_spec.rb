@@ -45,17 +45,11 @@ RSpec.describe "UsersLogins", type: :request do
 
       it "succeeds login with no flash danger message" do
         get login_path
-        # post login_path, params: {
-        #   session: {
-        #     email: user.email,
-        #     password: user.password
-        #   }
-        # }
         post_valid_information(user)
         expect(flash[:danger]).to be_falsey
         expect(is_logged_in?).to be_truthy
         follow_redirect!
-        expect(request.fullpath).to eq '/users/1'
+        expect(response.body).to include 'Michael Example'
       end
 
       it "succeeds login and logout" do
@@ -78,7 +72,7 @@ RSpec.describe "UsersLogins", type: :request do
     post_valid_information(user, 0)
     expect(is_logged_in?).to be_truthy
     follow_redirect!
-    expect(request.fullpath).to eq '/users/1'
+    expect(response.body).to include 'Michael Example'
 
     delete logout_path #通常のログアウト(1回目)
     expect(is_logged_in?).to be_falsey
