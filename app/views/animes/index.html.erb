@@ -1,0 +1,12 @@
+<% provide(:title, 'アニメ一覧') %>
+<h1>アニメ一覧</h1>
+
+<%= will_paginate @animes, list_classes: %w(pagination justify-content-center),
+                  previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+
+<ul class="animes">
+  <%= render @animes %>
+</ul>
+
+<%= will_paginate @animes, list_classes: %w(pagination justify-content-center),
+                  previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>

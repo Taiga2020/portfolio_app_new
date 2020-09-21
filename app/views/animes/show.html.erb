@@ -1,0 +1,43 @@
+<% provide(:title, @anime.title) %>
+
+<!-- Bootstrap確認部分 -->
+
+<h3>アニメ紹介ページ（アニメ詳細表示画面）</h3>
+
+<div class="container show-container">
+  <div class="row">
+    <!-- PC画面の場合 -->
+    <!-- <div class="col-md-3 bg-secondary" style="height:600px;"> -->
+    <!-- スマホ画面の場合 -->
+    <!-- <div class="col-md-3 bg-secondary" style="height:300px;"> -->
+    <h3 class="userinfo-container">
+      <%= @anime.image %><br />
+      <%= @anime.title %>
+    </h3>
+    <br />
+    <p>アニメタイトル：<br/><%= @anime.title %></p>
+    <p>アニメ紹介文：<br/><%= @anime.description %></p>
+  </div>
+</div>
+<br />
+
+<!-- データ確認部分 -->
+
+<p>データ確認！</p>
+
+<h3>アニメ紹介ページ（アニメ詳細表示画面）</h3>
+
+<!-- Animeコントローラのshowアクションに変数animeを定義 -->
+<h1>
+  <%= @anime.image %>
+  <%= @anime.title %>
+</h1>
+<br />
+<p>アニメタイトル　　　： <%= @anime.title %></p>
+<p>アニメイメージ画像　： <%= @anime.image %></p>
+<p>アニメ紹介文　　　　： <%= @anime.description %></p>
+<p>アニメ名称ふりがな　： <%= @anime.furigana %></p>
+<p>アニメデータ作成時刻： <%= @anime.created_at %></p>
+<p>アニメデータ編集時刻： <%= @anime.updated_at %></p>
+
+<p>現在時刻：<%= Time.now %></p>
