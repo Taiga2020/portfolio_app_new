@@ -2,9 +2,14 @@ ja:
   activerecord:
     models:
       user: ユーザー
+      anime: アニメ
     attributes:
       user:
         name: ユーザー名
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード（再入力）
+      anime:
+        title: アニメタイトル
+        image: イメージ画像
+        description: 内容紹介
