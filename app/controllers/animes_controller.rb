@@ -21,10 +21,10 @@ class AnimesController < ApplicationController
   def create
     # @user = User.new(user_params)
     @anime = Anime.new(anime_params)
-    # if @user.save
+    # if @anime.save
     #   # #登録(保存)成功
     #   # log_in @user
-    #   # flash[:success] = "アカウントの作成に成功しました"
+      flash[:success] = "アニメデータの作成に成功しました"
     #   # redirect_to @user #user_url(@user)
     #
     #   # UserMailer.account_activation(@user).deliver_now # >> models/user.rb
@@ -73,6 +73,12 @@ class AnimesController < ApplicationController
     # redirect_to users_url
   end
 
+  def search
+    selection = params[:keyword]
+    @animes = Anime.sort(selection)
+    @animes = @animes.paginate(page: params[:page], per_page: 10)
+  end
+
   private
 
     # def logged_in_user
@@ -88,13 +94,13 @@ class AnimesController < ApplicationController
     #   redirect_to(root_url) unless current_user?(@user)
     # end
     #
-    # def user_params
-    #   params.require(:user).permit(:name, :email, :password,
-    #                                :password_confirmation)
-    # end
+    def anime_params
+      params.require(:anime).permit(:title, :image, :description,
+                                    :furigana)
+    end
     #
-    # # 管理者かどうか確認
-    # def admin_user
-    #   redirect_to(root_url) unless current_user.admin?
-    # end
+    # 管理者かどうか確認
+    def admin_user
+      redirect_to(root_url) unless current_user.admin?
+    end
 end

@@ -99,10 +99,12 @@ $gray-medium-light: #eaeaea;
   // width: 400px;
   // margin-top: 20px;
   // margin-right: 20px;
-  background-color: #e9ecef;
+  // background-color: #e9ecef;
+  // background-color: rgba(255,204,204,0.95);
   display: flex;
   justify-content: center;
   align-items: center;
+  border-radius: 0.3em;
 }
 
 .welcome-message {
@@ -262,4 +264,11 @@ $gray-medium-light: #eaeaea;
     padding: 10px 0;
     border-bottom: 1px solid $gray-medium-light;
   }
+}
+
+/* Anime一覧表示・検索結果画面 */
+
+.pagination-control {
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
