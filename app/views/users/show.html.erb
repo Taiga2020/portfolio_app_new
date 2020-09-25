@@ -1,41 +1,32 @@
 <% provide(:title, @user.name) %>
 
-<!-- Bootstrap確認用 -->
-
 <h3>マイページ（ユーザー画面）</h3>
 
 <div class="container show-container">
-  <div class="row">
-    <!-- PC画面の場合 -->
-    <div class="col-md-3 bg-secondary" style="height:600px;">
-    <!-- スマホ画面の場合 -->
-    <!-- <div class="col-md-3 bg-secondary" style="height:300px;"> -->
-      サイドバー（ユーザー情報）
-      <h3 class="userinfo-container">
-        <%= gravatar_for @user %><br />
-        <%= @user.name %>
-      </h3>
-      <br />
-      <p>ユーザー名：<br/><%= @user.name %></p>
-      <% if current_user?(@user) %>
-        <p>メールアドレス：<br/><%= @user.email %></p>
-      <% end %>
+  <div class="row" style="height:600px;">
+    <div class="col-lg-3 bg-secondary" style="height:600px;">
+      <div class="bg-info" style="height:200px;">
+        <h3 class="userinfo-container">
+          <%= gravatar_for @user %><br />
+          <%= @user.name %>
+        </h3>
+      </div>
+      <div class="bg-primary" style="height:200px;">
+        <p>フォロー数：</p>
+        <p>フォロワー数：</p>
+        <p>お気に入りアニメ数：○○</p>
+      </div>
+      <div class="bg-info" style="height:200px;">
+        <p>ユーザー名：<br/><%= @user.name %></p>
+        <% if current_user?(@user) %>
+          <p>メールアドレス：<br/><%= @user.email %></p>
+        <% end %>
+      </div>
     </div>
-    <div class="col-md-9 bg-secondary" style="height:600px;">
-      <div class="row">
-        <div class="col bg-primary" style="height:50px;">
-          サブコンテンツ
-        </div>
-      </div>
-      <div class="row">
-        <div class="col bg-danger" style="height:550px;">
-          お気に入りアニメリスト
-        </div>
-      </div>
+    <div class="col-lg-9" style="height:600px; background-color:rgba(255,204,204,0.95);">
     </div>
   </div>
 </div>
-<br />
 
 <!-- 仮実装ページ -->
 

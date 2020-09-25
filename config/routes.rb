@@ -10,7 +10,11 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create' #新しいセッションの作成（ログイン）
   delete '/logout', to: 'sessions#destroy' #セッションの削除（ログアウト）
   post '/guest', to: 'guest_sessions#create' #ゲストログイン
+  get '/search', to: 'animes#search' #アニメ検索結果(ソート機能)
+  # post '/anime_create', to: 'animes#create'
+
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :animes
 end

@@ -23,8 +23,8 @@ RSpec.feature "UsersIndex", type: :feature do
       scenario "list each user" do
         visit users_path
         should have_current_path("/users")
-        should have_title("ユーザー一覧")
-        should have_css("h1", text: "ユーザー一覧")
+        should have_title("登録ユーザー")
+        should have_css("h1", text: "登録ユーザー")
         User.paginate(page: 1).each do |user|
           # expect(page).to have_css("li", text: user.name)
           expect(page).to have_css("li", text: "Michael Example")

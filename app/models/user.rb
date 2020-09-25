@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  #アソシエーション
+  has_many :animes, through: :favorites
+  has_many :favorites, dependent: :destroy
+
   #仮想的な属性：「remember_token」属性を作成する（実際にはcookiesに属する）
   attr_accessor :remember_token, :activation_token, :reset_token
 

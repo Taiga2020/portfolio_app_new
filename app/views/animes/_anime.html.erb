@@ -1,0 +1,8 @@
+<li>
+  <%#= link_to anime.image, anime %>
+  <%= link_to anime.title, anime %>
+  <% if !current_user.nil? && current_user.admin? && !current_user?(anime) %>
+    | <%= link_to "delete", anime, method: :delete,
+                                  data: { confirm: "本当によろしいですか？" } %>
+  <% end %>
+</li>
