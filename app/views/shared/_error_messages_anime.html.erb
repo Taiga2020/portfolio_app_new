@@ -1,0 +1,16 @@
+<%# if object_nil? && @anime.errors.any? %>
+<% if @anime.errors.any? %>
+<%# if object_nil? && object.errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger alert-form-extend" role="alert">
+      <%= @anime.errors.count %> <!-- 個のエラーがあります -->
+      <%#= object.errors.count %>個のエラーがあります
+    </div>
+    <ul>
+      <% @anime.errors.full_messages.each do |msg| %>
+      <%# object.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

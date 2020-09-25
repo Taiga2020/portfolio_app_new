@@ -1,6 +1,13 @@
 <% provide(:title, 'アニメ一覧') %>
 <h1 class="form-title">アニメ一覧</h1>
 
+<% if logged_in? && current_user.admin? %>
+  <div class="form-container jumbotron">
+    <h1 class="form-title">アニメデータ 新規投稿</h1>
+    <%= render 'data_form' %>
+  </div>
+<% end %>
+
 <%= render 'select_form' %>
 
 <div class="pagination-control">
@@ -8,7 +15,7 @@
                     previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
 </div>
 
-<ul class="users">
+<ul class="animes">
   <%= render @animes %>
 </ul>
 

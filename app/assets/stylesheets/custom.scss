@@ -254,7 +254,7 @@ $gray-medium-light: #eaeaea;
   margin: 1.5rem 0 1rem;
 }
 
-/* Users index */
+/* User一覧表示 */
 
 .users {
   list-style: none;
@@ -267,6 +267,16 @@ $gray-medium-light: #eaeaea;
 }
 
 /* Anime一覧表示・検索結果画面 */
+
+.animes {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-medium-light;
+  }
+}
 
 .pagination-control {
   margin-top: 20px;

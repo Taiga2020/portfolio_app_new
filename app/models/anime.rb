@@ -1,7 +1,11 @@
 class Anime < ApplicationRecord
   has_many :users, through: :favorites
   has_many :favorites, dependent: :destroy
+  # validates :title, presence: true, uniqueness: true
   validates :title, presence: true
+  validates :furigana, presence: true
+  validates :description, presence: true
+  validates :image, presence: true
   # validate :validate_picture
 
   def resize_image

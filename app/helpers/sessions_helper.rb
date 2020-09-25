@@ -79,4 +79,10 @@ module SessionsHelper
     current_user == User.find_by(email: 'example-1@railstutorial.org')
   end
 
+  # エラーメッセージのデバッグ
+  def object_nil?
+    !@user.nil?
+    !@anime.nil?
+  end
+
 end

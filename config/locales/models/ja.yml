@@ -12,4 +12,5 @@ ja:
       anime:
         title: アニメタイトル
         image: イメージ画像
-        description: 内容紹介
+        description: アニメ説明
+        furigana: ふりがな

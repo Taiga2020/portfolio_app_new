@@ -1,0 +1,29 @@
+<%= form_with(model: @anime, url: animes_path, method: :post, local: true) do |f| %>
+  <%#= render 'shared/error_messages_anime' %>
+  <%#= render 'shared/error_messages', object: f.object %>
+
+  <div class="form-group">
+    <%= f.label 'タイトル【必須】' %>
+    <%= f.text_field :title, class: 'form-control', placeholder: "例 ３月のライオン" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'ふりがな【必須】' %>
+    <%= f.text_field :furigana, class: 'form-control', placeholder: "例 さんがつのらいおん" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'アニメ説明' %>
+    <%= f.text_field :description, class: 'form-control', placeholder: "（アニメの紹介文）" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label 'イメージ画像【必須】' %>
+    <%= f.text_field :image, class: 'form-control', placeholder: "※拡張子必須（実装中）" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit class: "btn btn-info btn-lg form-submit" %>
+  </div>
+
+<% end %>
