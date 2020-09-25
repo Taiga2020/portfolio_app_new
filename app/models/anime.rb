@@ -14,13 +14,11 @@ class Anime < ApplicationRecord
 
   def self.sort(selection)
     case selection
-    when 'default'
+    when '投稿が新しい順'
       return all.order(created_at: :DESC)
-    when 'new'
-      return all.order(created_at: :DESC)
-    when 'old'
+    when '投稿が古い順'
       return all.order(created_at: :ASC)
-    when 'furigana'
+    when '50音順'
       return all.order(furigana: :ASC)
     # when 'likes'
       # return find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
