@@ -7,8 +7,15 @@ class AnimesController < ApplicationController
     @animes = Anime.paginate(page: params[:page], per_page: 10)
   end
 
+  def favorite_users
+    @anime = Anime.find(params[:id])
+    @favorites = Favorite.where(anime_id: @anime.id).paginate(page: params[:page], per_page: 10)
+    # @users = User.where(activated: true).paginate(page: params[:page], per_page: 10)
+  end
+
   def show
     @anime = Anime.find(params[:id])
+    @favorites = Favorite.where(anime_id: @anime.id).all
   end
 
   def new
@@ -47,6 +54,11 @@ class AnimesController < ApplicationController
     @animes = Anime.sort(selection)
     @animes = @animes.paginate(page: params[:page], per_page: 10)
   end
+
+  # def favorites
+  #   # @animes = current_user.favorites.includes(:user).recent
+  #   @animes = current_user.favorites.includes(:user)
+  # end
 
   private
 

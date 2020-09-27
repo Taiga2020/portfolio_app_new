@@ -14,7 +14,7 @@
       <div class="bg-primary" style="height:200px;">
         <p>フォロー数：</p>
         <p>フォロワー数：</p>
-        <p>お気に入りアニメ数：○○</p>
+        <p>お気に入りアニメ数：<%= @favorites.count %></p>
       </div>
       <div class="bg-info" style="height:200px;">
         <p>ユーザー名：<br/><%= @user.name %></p>
@@ -23,7 +23,27 @@
         <% end %>
       </div>
     </div>
-    <div class="col-lg-9" style="height:600px; background-color:rgba(255,204,204,0.95);">
+    <div class="col-lg-9 animes-fav" style="height:600px; background-color:rgba(255,204,204,1);">
+      <div class="welcome-message" style="margin-top: 0;">My アニメリスト</div>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="btn-original rounded fav-count">
+            お気に入りアニメ数：<%= @favorites.count %>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="btn-original rounded fav-count">
+            <i class="fas fa-search" style="margin-right:5px"></i><%= link_to "アニメ検索", animes_path %>
+          </div>
+        </div>
+      </div>
+      <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
+                        previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+        <% @favorites.each do |favorite| %>
+          <li class="animes-fav-list"><%= link_to favorite.anime.title, anime_path(favorite.anime.id) %></li>
+        <% end %>
+      <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
+                        previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
     </div>
   </div>
 </div>

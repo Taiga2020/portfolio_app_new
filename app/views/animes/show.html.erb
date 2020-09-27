@@ -2,42 +2,63 @@
 
 <!-- Bootstrap確認部分 -->
 
-<h3>アニメ紹介ページ（アニメ詳細表示画面）</h3>
+<!-- アニメ紹介ページ（アニメ詳細表示画面） -->
 
-<div class="container show-container">
+<div class="container home-container">
   <div class="row">
-    <!-- PC画面の場合 -->
-    <!-- <div class="col-md-3 bg-secondary" style="height:600px;"> -->
-    <!-- スマホ画面の場合 -->
-    <!-- <div class="col-md-3 bg-secondary" style="height:300px;"> -->
-    <h3 class="userinfo-container">
-      <%= @anime.image %><br />
-      <%= @anime.title %>
-    </h3>
-    <br />
-    <p>アニメタイトル：<br/><%= @anime.title %></p>
-    <p>アニメ紹介文：<br/><%= @anime.description %></p>
+    <div class="col-lg-12" style="background-color: #FFEEFF;">
+      <p style="font-size:30px; color: #8B0000; font-weight: bold; float: left;">
+        ・<%= @anime.title %>
+      </p>
+      <% if current_user.nil? == false %>
+        <% if current_user.checkfav?(@anime) %>
+          <%= form_with(model: current_user.favorites.find_by(anime_id: @anime.id), local: true, method: :delete) do |f| %>
+            <%= hidden_field_tag :anime_id, @anime.id %>
+            <%#= f.submit '登録解除', class: 'btn btn-danger' %>
+            <%= f.button :type => "submit", style: 'border-style: none; background-color: #FFEEFF; float: right;' do %>
+              <i class="fas fa-heart unlike-btn"></i>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= form_with(model: current_user.favorites.build, local: true) do |f| %>
+            <%= hidden_field_tag :anime_id, @anime.id %>
+            <%#= f.submit 'お気に入り登録', class: 'btn btn-primary' %>
+            <%= f.button :type => "submit", style: 'border-style: none; background-color: #FFEEFF; float: right;' do %>
+              <i class="far fa-heart like-btn"></i>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-lg-4" style="background-color:rgba(255,204,204,0.95);">
+      <%= image_tag 'coming_soon.png', :size =>'300x300' %>
+      <p>お気に入り登録者数：<%= @favorites.count %></p>
+    </div>
+    <div class="col-lg-8 bg-info">
+      <p>アニメ紹介文：</p>
+      <p>「<%= @anime.description %>」</p>
+    </div>
+    <div class="col-lg-12 bg-secondary">
+      <p>スタッフ・出演者：</p>
+      <p>放映時間：</p>
+    </div>
   </div>
 </div>
+
 <br />
 
 <!-- データ確認部分 -->
-
-<p>データ確認！</p>
-
-<h3>アニメ紹介ページ（アニメ詳細表示画面）</h3>
-
+<p>＜データ確認＞</p>
 <!-- Animeコントローラのshowアクションに変数animeを定義 -->
-<h1>
-  <%= @anime.image %>
-  <%= @anime.title %>
-</h1>
-<br />
 <p>アニメタイトル　　　： <%= @anime.title %></p>
 <p>アニメイメージ画像　： <%= @anime.image %></p>
 <p>アニメ紹介文　　　　： <%= @anime.description %></p>
 <p>アニメ名称ふりがな　： <%= @anime.furigana %></p>
 <p>アニメデータ作成時刻： <%= @anime.created_at %></p>
 <p>アニメデータ編集時刻： <%= @anime.updated_at %></p>
+<p>編集なう！⬇︎</p>
+<p>
+<%= link_to 'お気に入り登録しているユーザー一覧', favorite_users_anime_path(@anime) %>
+</p>
 
 <p>現在時刻：<%= Time.now %></p>

@@ -1,6 +1,8 @@
 class Anime < ApplicationRecord
-  has_many :users, through: :favorites
-  has_many :favorites, dependent: :destroy
+  #アソシエーション
+  has_many :favorites, dependent: :destroy #アニメが削除されると、favoriteも削除される
+  has_many :users, through: :favorites #中間テーブルfavoritesを通じてusersに繋がっている
+
   # validates :title, presence: true, uniqueness: true
   validates :title, presence: true
   validates :furigana, presence: true
@@ -26,6 +28,25 @@ class Anime < ApplicationRecord
     #   return find(Favorite.group(:post_id).order(Arel.sql('count(post_id) asc')).pluck(:post_id))
     end
   end
+
+  ## お気に入り(Favorite)
+
+  # #登録メソッド
+  #   def addfav(anime)
+  #     favorites.find_or_create_by(anime_id: anime.id)
+  #   end
+  #
+  # #登録解除メソッド
+  #   def removefav(anime)
+  #     favorite = favorites.find_by(anime_id: anime.id)
+  #     favorite.destroy if favorite
+  #   end
+  #
+  # #確認メソッド
+  #   def checkfav?(anime)
+  #     self.users.include?(anime)
+  #   end
+  #   #self.animesの"animes"はhas_manyで定義したもの(:animes)
 
   private
     # def validate_picture
