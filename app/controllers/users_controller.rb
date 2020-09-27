@@ -11,6 +11,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @favorites = Favorite.where(user_id: @user.id).paginate(page: params[:page], per_page: 7)
     redirect_to root_url and return unless @user.activated?
   end
 

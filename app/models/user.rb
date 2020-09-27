@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   #アソシエーション
-  has_many :animes, through: :favorites
-  has_many :favorites, dependent: :destroy
+  has_many :favorites, dependent: :destroy #ユーザーが削除されると、favoriteも削除される
+  has_many :animes, through: :favorites #中間テーブルfavoritesを通じてanimesに繋がっている
 
   #仮想的な属性：「remember_token」属性を作成する（実際にはcookiesに属する）
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -101,6 +101,25 @@ class User < ApplicationRecord
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
   end
+
+  ## お気に入り(Favorite)
+
+  #登録メソッド
+    def addfav(anime)
+      favorites.find_or_create_by(anime_id: anime.id)
+    end
+
+  #登録解除メソッド
+    def removefav(anime)
+      favorite = favorites.find_by(anime_id: anime.id)
+      favorite.destroy if favorite
+    end
+
+  #確認メソッド
+    def checkfav?(anime)
+      self.animes.include?(anime)
+    end
+    #self.animesの"animes"はhas_manyで定義したもの(:animes)
 
   private
     def downcase_email #このメソッドはuser.rb内でのみ使用するのでprivate下に定義

@@ -1,12 +1,14 @@
 <% provide(:title, '登録ユーザー') %>
-<h1 class="form-title">登録ユーザー</h1>
+<div class="bg-light">
+  <h1 class="page-title">登録ユーザー</h1>
 
-<%= will_paginate @users, list_classes: %w(pagination justify-content-center),
-                  previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+  <%= will_paginate @users, list_classes: %w(pagination justify-content-center),
+                    previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
 
-<ul class="users">
-  <%= render @users %>
-</ul>
+  <ul class="animes">
+    <%= render @users %>
+  </ul>
 
-<%= will_paginate @users, list_classes: %w(pagination justify-content-center),
-                  previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+  <%= will_paginate @users, list_classes: %w(pagination justify-content-center),
+                    previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+</div>

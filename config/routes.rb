@@ -16,5 +16,10 @@ Rails.application.routes.draw do
   resources :users
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
-  resources :animes
+  resources :animes do
+    member do
+      get 'favorite_users'
+    end
+  end
+  resources :favorites, only: [:create, :destroy]
 end
