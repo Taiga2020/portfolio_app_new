@@ -1,32 +1,34 @@
 <% provide(:title, 'アニメ一覧') %>
-<h1 class="form-title">アニメ一覧</h1>
+<div class="bg-light">
+  <h1 class="page-title">アニメ一覧</h1>
 
-<div class="row">
-  <div class="col-lg-6">
-    <% if logged_in? && current_user.admin? %>
-      <div class="form-container jumbotron">
-        <h1 class="form-title">アニメデータ 新規投稿</h1>
-        <%= render 'data_form' %>
-      </div>
-    <% end %>
+  <div class="row">
+    <div class="col-lg-6">
+      <% if logged_in? && current_user.admin? %>
+        <div class="form-container jumbotron">
+          <h1 class="form-title">アニメデータ 新規投稿</h1>
+          <%= render 'data_form' %>
+        </div>
+      <% end %>
 
-    <%= render 'select_form' %>
-  </div>
-
-  <div class="col-lg-6">
-    <div class="pagination-control">
-      <%= will_paginate @animes, list_classes: %w(pagination justify-content-center),
-                        previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+      <%= render 'select_form' %>
     </div>
 
-    <ul class="animes">
-      <p class="index-option-memo">表示順: 投稿が新しい順</p>
-      <%= render @animes %>
-    </ul>
+    <div class="col-lg-6">
+      <div class="pagination-control">
+        <%= will_paginate @animes, list_classes: %w(pagination justify-content-center),
+                          previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+      </div>
 
-    <div class="pagination-control">
-      <%= will_paginate @animes, list_classes: %w(pagination justify-content-center),
-                        previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+      <ul class="animes">
+        <p class="index-option-memo">表示順: 投稿が新しい順</p>
+        <%= render @animes %>
+      </ul>
+
+      <div class="pagination-control">
+        <%= will_paginate @animes, list_classes: %w(pagination justify-content-center),
+                          previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+      </div>
     </div>
   </div>
 </div>
