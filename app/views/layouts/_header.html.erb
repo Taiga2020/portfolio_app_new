@@ -46,23 +46,16 @@
                 <% end %>
               </div>
             </li>
-            <%#= link_to "プロフィール編集", edit_user_path(current_user), class:"dropdown-item" %>
-            <%= link_to "ログアウト", logout_path, method: :delete, class:"nav-item nav-link rounded btn-logout-extend", style:"background-color:#F08080" %>
+            <%#= link_to "ログアウト", logout_path, method: :delete, class:"nav-item nav-link rounded btn-logout-extend", style:"background-color:#F08080" %>
+            <div class="btn-original">
+              <%= link_to logout_path, method: :delete, class:"nav-item nav-link rounded btn-login", style:"color: white; padding-right:10px; padding-left:10px;" do %>
+                <i class="fas fa-sign-out-alt" style="margin-right:5px"></i>ログアウト
+              <% end %>
+            </div>
           <% else %>
-          <!-- <li class="nav-item dropdown border-right">
-           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             (Dropdown)
-           </a>
-           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-             <a class="dropdown-item" href="#">Action</a>
-             <a class="dropdown-item" href="#">Another action</a>
-             <div class="dropdown-divider"></div>
-             <a class="dropdown-item" href="#">Something else here</a>
-           </div>
-          </li> -->
             <%= link_to "アカウント登録", signup_path, class:"nav-item nav-link" %>
             <div class="btn-original">
-              <%= link_to login_path, class:"nav-item nav-link rounded btn-login", style:"color: white;" do %>
+              <%= link_to login_path, class:"nav-item nav-link rounded btn-login", style:"color: white; padding-right:10px; padding-left:10px;" do %>
                 <i class="fas fa-lock" style="margin-right:5px"></i>ログイン
               <% end %>
             </div>

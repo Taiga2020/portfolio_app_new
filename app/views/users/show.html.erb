@@ -1,9 +1,9 @@
 <% provide(:title, @user.name) %>
 <div class="container show-container">
-  <div class="row" style="height:600px;">
+  <div class="row">
 
     <!-- ユーザー情報 -->
-    <div class="col-lg-4" style="height:600px; margin:auto; background-color:#FFEEFF; border-radius:0.3em;">
+    <div class="col-lg-4" style="margin-right:auto; margin-left:auto; background-color:#FFEEFF; border-radius:0.3em;">
       <div style="margin: 20px 0 20px 0;">
         <div class="userinfo-container">
           <p class="userinfo-image"><%= gravatar_for @user %></p>
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Myアニメリスト -->
-    <div class="col-lg-8 animes-fav" style="height:600px; background-color:rgba(255,204,204,1);">
+    <div class="col-lg-8 animes-fav" style="background-color:rgba(255,204,204,1);">
       <div class="welcome-message" style="margin-top: 0;">My アニメリスト</div>
       <div class="btn-original rounded fav-count" style="margin-bottom:20px;">
         <%= link_to animes_path, class: "btn-login-extend" do %>
