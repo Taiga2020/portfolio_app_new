@@ -5,31 +5,29 @@
     <!-- ユーザー情報 -->
     <div class="col-lg-4" style="height:600px; margin:auto; background-color:#FFEEFF; border-radius:0.3em;">
       <div style="margin: 20px 0 20px 0;">
-        <h3 class="userinfo-container">
-          <%= gravatar_for @user %><br/>
-          <%= @user.name %>
-        </h3>
-
-        <% if current_user.nil? == false %>
-          <% unless current_user?(@user) %>
-            <div id="follow_form">
-              <% if current_user.following?(@user) %>
-                <%= form_with(model: current_user.following_relationships.find_by(following_id: @user.id), local: true, method: :delete) do |f| %>
-                  <%= f.submit "フォロー解除", class: "btn btn-large btn-danger form-submit" %>
+        <div class="userinfo-container">
+          <p class="userinfo-image"><%= gravatar_for @user %></p>
+          <p class="userinfo-name"><%= @user.name %></p>
+          <% if current_user.nil? == false %>
+            <% unless current_user?(@user) %>
+              <div id="follow_form">
+                <% if current_user.following?(@user) %>
+                  <%= form_with(model: current_user.following_relationships.find_by(following_id: @user.id), local: true, method: :delete) do |f| %>
+                    <%= f.submit "フォロー解除", class: "btn btn-large btn-danger form-submit" %>
+                  <% end %>
+                <% else %>
+                  <%= form_with(model: current_user.following_relationships.build(following_id: @user.id), local: true) do |f| %>
+                    <%= f.hidden_field :following_id %>
+                    <%= f.submit "フォローする", class: "btn btn-large btn-primary form-submit" %>
+                  <% end %>
                 <% end %>
-              <% else %>
-                <%= form_with(model: current_user.following_relationships.build(following_id: @user.id), local: true) do |f| %>
-                  <%= f.hidden_field :following_id %>
-                  <%= f.submit "フォローする", class: "btn btn-large btn-primary form-submit" %>
-                <% end %>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           <% end %>
-        <% end %>
-
+        </div>
       </div>
 
-      <div style="margin: 40px 0 20px 0;">
+      <div class="followinfo-container">
         <% @user ||= current_user %>
 
         <div class="title-small" style="display: block; margin:auto; margin-top:10px; margin-bottom:10px;">
@@ -51,12 +49,6 @@
         </div>
       </div>
 
-      <div class="userinfo" style="text-align: center;">
-        <% if current_user?(@user) %>
-          <p>＜ユーザー名＞<br/><%= @user.name %></p>
-          <p>＜メールアドレス＞<br/><%= @user.email %></p>
-        <% end %>
-      </div>
     </div>
 
     <!-- Myアニメリスト -->
@@ -76,10 +68,6 @@
           <% end %>
         <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
                           previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
-      </div>
-
-      <div class="title-small" style="display: block; margin:auto;">
-        お気に入りアニメ数：<%= @favorites.count %>
       </div>
     </div>
   </div>
