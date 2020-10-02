@@ -339,7 +339,28 @@ $gray-medium-light: #eaeaea;
 
 .userinfo-container {
   text-align: center;
-  margin-top: 30px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+  background-color: #e9ecef;
+  border-radius: 0.3em;
+}
+
+.userinfo-image {
+  padding-top: 16px;
+}
+
+.userinfo-name {
+  font-size: 1.75rem;
+}
+
+.followinfo-container {
+  // display: inline-block;
+  // text-align: center;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: #e9ecef;
+  border-radius: 0.3em;
 }
 
 .animes-fav {
