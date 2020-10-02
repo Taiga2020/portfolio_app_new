@@ -1,0 +1,26 @@
+<div class="bg-light">
+  <h1 class="page-title">フォロワー一覧</h1>
+
+  <%= will_paginate @users, list_classes: %w(pagination justify-content-center),
+                    previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+
+  <ul class="animes">
+    <% if @user.followers.count == 0 %>
+      <p style="text-align: center; color:#8B0000;">まだフォロワーがいません。</p>
+      <p class="btn-info btn-lg btn-notice" style="text-align: center; width:200px; margin:auto;">
+        <%= link_to 'ユーザーを探す', users_path %>
+      </p>
+    <% else %>
+      <% @user.followers.each do |user| %>
+      <li>
+        <%= gravatar_for user, size: 50 %>
+        <%= link_to user.name, user_path(user) %>
+      </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <%= will_paginate @users, list_classes: %w(pagination justify-content-center),
+                    previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+
+</div>

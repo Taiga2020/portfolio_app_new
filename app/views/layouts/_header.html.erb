@@ -22,7 +22,7 @@
             <%= link_to "My Profile", about_path, class:"nav-link" %>
           </li>
           <li class="nav-item border-bottom">
-            <%= link_to "アニメ検索", animes_path, class:"nav-link" %>
+            <%= link_to "アニメ一覧", animes_path, class:"nav-link" %>
           </li>
           <li class="nav-item border-bottom">
             <%= link_to "登録ユーザー", users_path, class:"nav-link" %>
@@ -60,13 +60,12 @@
              <a class="dropdown-item" href="#">Something else here</a>
            </div>
           </li> -->
-          <!-- <li class="nav-item"> -->
-            <%#= link_to "アカウント登録", signup_path, class:"nav-link" %>
             <%= link_to "アカウント登録", signup_path, class:"nav-item nav-link" %>
-          <!-- </li> -->
-          <!-- <li class="nav-item rounded" style="background-color:#F08080"> -->
-            <%= link_to "ログイン", login_path, class:"nav-item nav-link rounded btn-login-extend", style:"background-color:#F08080" %>
-          <!-- </li> -->
+            <div class="btn-original">
+              <%= link_to login_path, class:"nav-item nav-link rounded btn-login", style:"color: white;" do %>
+                <i class="fas fa-lock" style="margin-right:5px"></i>ログイン
+              <% end %>
+            </div>
           <% end %>
         </ul>
 

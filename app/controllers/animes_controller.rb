@@ -52,13 +52,8 @@ class AnimesController < ApplicationController
   def search
     selection = params[:keyword]
     @animes = Anime.sort(selection)
-    @animes = @animes.paginate(page: params[:page], per_page: 10)
+    # @animes = @animes.paginate(page: params[:page], per_page: 10)
   end
-
-  # def favorites
-  #   # @animes = current_user.favorites.includes(:user).recent
-  #   @animes = current_user.favorites.includes(:user)
-  # end
 
   private
 
@@ -66,23 +61,10 @@ class AnimesController < ApplicationController
       # params.require(:anime).permit(:title, :image, :description, :furigana)
       params.permit(:title, :image, :description, :furigana)
     end
-    #
+
     # 管理者かどうか確認
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end
 
-    # def logged_in_user
-    #   unless logged_in?
-    #     store_location
-    #     flash[:warning] = 'ログインしてください'
-    #     redirect_to login_url
-    #   end
-    # end
-    #
-    # def correct_user
-    #   @user = User.find(params[:id])
-    #   redirect_to(root_url) unless current_user?(@user)
-    # end
-    #
 end

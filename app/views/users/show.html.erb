@@ -1,68 +1,86 @@
 <% provide(:title, @user.name) %>
-
-<h3>マイページ（ユーザー画面）</h3>
-
 <div class="container show-container">
   <div class="row" style="height:600px;">
-    <div class="col-lg-3 bg-secondary" style="height:600px;">
-      <div class="bg-info" style="height:200px;">
+
+    <!-- ユーザー情報 -->
+    <div class="col-lg-4" style="height:600px; margin:auto; background-color:#FFEEFF; border-radius:0.3em;">
+      <div style="margin: 20px 0 20px 0;">
         <h3 class="userinfo-container">
-          <%= gravatar_for @user %><br />
+          <%= gravatar_for @user %><br/>
           <%= @user.name %>
         </h3>
+
+        <% if current_user.nil? == false %>
+          <% unless current_user?(@user) %>
+            <div id="follow_form">
+              <% if current_user.following?(@user) %>
+                <%= form_with(model: current_user.following_relationships.find_by(following_id: @user.id), local: true, method: :delete) do |f| %>
+                  <%= f.submit "フォロー解除", class: "btn btn-large btn-danger form-submit" %>
+                <% end %>
+              <% else %>
+                <%= form_with(model: current_user.following_relationships.build(following_id: @user.id), local: true) do |f| %>
+                  <%= f.hidden_field :following_id %>
+                  <%= f.submit "フォローする", class: "btn btn-large btn-primary form-submit" %>
+                <% end %>
+              <% end %>
+            </div>
+          <% end %>
+        <% end %>
+
       </div>
-      <div class="bg-primary" style="height:200px;">
-        <p>フォロー数：</p>
-        <p>フォロワー数：</p>
-        <p>お気に入りアニメ数：<%= @favorites.count %></p>
+
+      <div style="margin: 40px 0 20px 0;">
+        <% @user ||= current_user %>
+
+        <div class="title-small" style="display: block; margin:auto; margin-top:10px; margin-bottom:10px;">
+          フォロー中：<%= @user.followings.count %>
+          <a href="<%= following_user_path(@user) %>" style="color:blue;">
+            （一覧）
+          </a>
+        </div>
+
+        <div class="title-small" style="display: block; margin:auto; margin-top:10px; margin-bottom:10px;">
+          フォロワー：<%= @user.followers.count %>
+          <a href="<%= followers_user_path(@user) %>" style="color:blue;">
+            （一覧）
+          </a>
+        </div>
+
+        <div class="title-small" style="display: block; margin:auto; margin-top:10px; margin-bottom:10px;">
+          お気に入りアニメ数：<%= @favorites.count %>
+        </div>
       </div>
-      <div class="bg-info" style="height:200px;">
-        <p>ユーザー名：<br/><%= @user.name %></p>
+
+      <div class="userinfo" style="text-align: center;">
         <% if current_user?(@user) %>
-          <p>メールアドレス：<br/><%= @user.email %></p>
+          <p>＜ユーザー名＞<br/><%= @user.name %></p>
+          <p>＜メールアドレス＞<br/><%= @user.email %></p>
         <% end %>
       </div>
     </div>
-    <div class="col-lg-9 animes-fav" style="height:600px; background-color:rgba(255,204,204,1);">
+
+    <!-- Myアニメリスト -->
+    <div class="col-lg-8 animes-fav" style="height:600px; background-color:rgba(255,204,204,1);">
       <div class="welcome-message" style="margin-top: 0;">My アニメリスト</div>
-      <div class="row">
-        <div class="col-lg-6">
-          <div class="btn-original rounded fav-count">
-            お気に入りアニメ数：<%= @favorites.count %>
-          </div>
-        </div>
-        <div class="col-lg-6">
-          <div class="btn-original rounded fav-count">
-            <i class="fas fa-search" style="margin-right:5px"></i><%= link_to "アニメ検索", animes_path %>
-          </div>
-        </div>
-      </div>
-      <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
-                        previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
-        <% @favorites.each do |favorite| %>
-          <li class="animes-fav-list"><%= link_to favorite.anime.title, anime_path(favorite.anime.id) %></li>
+      <div class="btn-original rounded fav-count" style="margin-bottom:20px;">
+        <%= link_to animes_path, class: "btn-login-extend" do %>
+        <i class="fas fa-search" style="margin-right:5px"></i>アニメ検索
         <% end %>
-      <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
-                        previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+      </div>
+
+      <div style="margin-bottom:20px;">
+        <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
+                          previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+          <% @favorites.each do |favorite| %>
+            <li class="animes-fav-list"><%= link_to favorite.anime.title, anime_path(favorite.anime.id) %></li>
+          <% end %>
+        <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
+                          previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+      </div>
+
+      <div class="title-small" style="display: block; margin:auto;">
+        お気に入りアニメ数：<%= @favorites.count %>
+      </div>
     </div>
   </div>
 </div>
-
-<!-- 仮実装ページ -->
-
-<h3>マイページ（ユーザー画面）</h3>
-
-<p>※ログインしています！</p>
-
-<!-- Userコントローラのshowアクションに変数userを定義 -->
-<h1>
-  <%= gravatar_for @user %>
-  <%= @user.name %>
-</h1>
-<br />
-<p>ユーザー名　　： <%= @user.name %></p>
-<p>メールアドレス： <%= @user.email %></p>
-<p>アカウント作成時刻： <%= @user.created_at %></p>
-<p>アカウント編集時刻： <%= @user.updated_at %></p>
-
-<p>現在時刻：<%= Time.now %></p>

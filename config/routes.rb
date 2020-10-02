@@ -13,13 +13,18 @@ Rails.application.routes.draw do
   get '/search', to: 'animes#search' #アニメ検索結果(ソート機能)
   # post '/anime_create', to: 'animes#create'
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships,       only: [:create, :destroy]
   resources :account_activations, only: [:edit]
-  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :password_resets,     only: [:new, :create, :edit, :update]
   resources :animes do
     member do
       get 'favorite_users'
     end
   end
-  resources :favorites, only: [:create, :destroy]
+  resources :favorites,           only: [:create, :destroy]
 end

@@ -1,19 +1,21 @@
 <% provide(:title, 'アニメ一覧') %>
-<h1 class="form-title">アニメ一覧</h1>
+<div class="bg-light">
+  <h1 class="page-title">アニメ一覧</h1>
 
-<%= render 'select_form' %>
+  <%= render 'select_form' %>
 
-<div class="pagination-control">
-  <%= will_paginate @animes, list_classes: %w(pagination justify-content-center),
-                    previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
-</div>
+  <div class="pagination-control">
+    <%#= will_paginate @animes, list_classes: %w(pagination justify-content-center),
+                      previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+  </div>
 
-<ul class="animes">
-  <p class="index-option-memo">表示順: <%= params[:keyword] %></p>
-  <%= render @animes %>
-</ul>
+  <ul class="animes">
+    <p class="index-option-memo">表示順: <%= params[:keyword] %></p>
+    <%= render @animes %>
+  </ul>
 
-<div class="pagination-control">
-  <%= will_paginate @animes, list_classes: %w(pagination justify-content-center),
-                    previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+  <div class="pagination-control">
+    <%#= will_paginate @animes, list_classes: %w(pagination justify-content-center),
+                      previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+  </div>
 </div>
