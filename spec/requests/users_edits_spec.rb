@@ -84,7 +84,6 @@ RSpec.describe "UsersEdits", type: :request do
         expect(flash[:success]).to be_truthy
         follow_redirect!
         # expect(request.fullpath).to eq '/users/1' #表示はマイページ
-        expect(response.body).to include 'マイページ'
         expect(response.body).to include 'Michael Example'
       end
 

@@ -1,7 +1,14 @@
 class User < ApplicationRecord
-  #アソシエーション
+  #アソシエーション：お気に入りアニメ登録機能
   has_many :favorites, dependent: :destroy #ユーザーが削除されると、favoriteも削除される
   has_many :animes, through: :favorites #中間テーブルfavoritesを通じてanimesに繋がっている
+  #アソシエーション：フォロー/アンフォロー機能
+  # # フォローする側：自分がフォローしているユーザーを取得（user.followings）
+  has_many :following_relationships, foreign_key: "follower_id", class_name: "Relationship", dependent: :destroy
+  has_many :followings, through: :following_relationships #たくさんの「フォローしているユーザー」を持つ
+  # # フォローされる側：自分をフォローしているユーザーを取得（user.followers）
+  has_many :follower_relationships, foreign_key: "following_id", class_name: "Relationship", dependent: :destroy
+  has_many :followers, through: :follower_relationships #たくさんの「フォローされているユーザー」を持つ
 
   #仮想的な属性：「remember_token」属性を作成する（実際にはcookiesに属する）
   attr_accessor :remember_token, :activation_token, :reset_token
@@ -115,11 +122,28 @@ class User < ApplicationRecord
       favorite.destroy if favorite
     end
 
-  #確認メソッド
+  #お気に入り登録しているか確認するメソッド（狙い：すでに登録している場合は重複登録を避ける）
     def checkfav?(anime)
       self.animes.include?(anime)
     end
     #self.animesの"animes"はhas_manyで定義したもの(:animes)
+
+  ##フォロー/アンフォロー(Relationship)
+
+  #フォローメソッド
+  def follow!(other_user)
+    following_relationships.create!(following_id: other_user.id)
+  end
+
+  #アンフォローメソッド
+  def unfollow!(other_user)
+    following_relationships.find_by(following_id: other_user.id).destroy
+  end
+
+  #フォロー確認メソッド
+  def following?(other_user)
+    following_relationships.find_by(following_id: other_user.id)
+  end
 
   private
     def downcase_email #このメソッドはuser.rb内でのみ使用するのでprivate下に定義

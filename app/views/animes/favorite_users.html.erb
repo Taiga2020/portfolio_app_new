@@ -1,24 +1,18 @@
-## 該当のアニメをお気に入り登録しているお気に入りユーザー一覧
-<!-- <p> -->
-<%# @favorites.each do |favorite| %>
-  <!-- <li> -->
-    <%#= gravatar_for favorite.user, size: 50 %>
-    <%#= link_to favorite.user.name, favorite.user %>
-  <!-- </li> -->
-<%# end %>
-<!-- </p> -->
+<div class="bg-light">
+  <h1 class="page-title"><%= @anime.title %>をお気に入り登録しているユーザー一覧</h1>
 
-<%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
-                  previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+  <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
+                    previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
 
-<ul class="animes">
-  <% @favorites.each do |favorite| %>
-    <li>
-      <%= gravatar_for favorite.user, size: 50 %>
-      <%= link_to favorite.user.name, favorite.user %>
-    </li>
-  <% end %>
-</ul>
+  <ul class="animes">
+    <% @favorites.each do |favorite| %>
+      <li>
+        <%= gravatar_for favorite.user, size: 50 %>
+        <%= link_to favorite.user.name, favorite.user %>
+      </li>
+    <% end %>
+  </ul>
 
-<%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
-                  previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+  <%= will_paginate @favorites, list_classes: %w(pagination justify-content-center),
+                    previous_label: '&laquo; 前へ', next_label: '次へ &raquo;' %>
+</div>

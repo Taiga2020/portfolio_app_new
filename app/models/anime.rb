@@ -16,16 +16,16 @@ class Anime < ApplicationRecord
 
   def self.sort(selection)
     case selection
-    when '投稿が新しい順'
+    when '追加が新しい順'
       return all.order(created_at: :DESC)
-    when '投稿が古い順'
+    when '追加が古い順'
       return all.order(created_at: :ASC)
     when '50音順'
       return all.order(furigana: :ASC)
-    # when 'likes'
-      # return find(Favorite.group(:post_id).order(Arel.sql('count(post_id) desc')).pluck(:post_id))
-    # when 'dislikes'
-    #   return find(Favorite.group(:post_id).order(Arel.sql('count(post_id) asc')).pluck(:post_id))
+    when 'お気に入り登録者が多い順'
+      return find(Favorite.group(:anime_id).order(Arel.sql('count(user_id) desc')).pluck(:anime_id))
+    when 'お気に入り登録者が少ない順'
+      return find(Favorite.group(:anime_id).order(Arel.sql('count(user_id) asc')).pluck(:anime_id))
     end
   end
 

@@ -1,92 +1,83 @@
-<%# provide(:title, "Home") %>
-
-<%# if user_signed_in? %>
-
-<!-- ログインしている場合 -->
-  <!-- <h2>現在 <%#= current_user.name %> さんがログインしています</h2> -->
-  <!-- <h4>メールアドレス： <%#= current_user.email %></h4> -->
-  <!-- <div> -->
-    <%# unless current_user.email == "guest@example.com" %>
-      <%#= link_to "ユーザー情報の変更", edit_user_registration_path, class: 'post' %>
-    <%# end %>
-  <!-- </div> -->
-  <!-- <div> -->
-    <%#= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-  <!-- </div> -->
-
-<%# else %>
-
-<!-- ログインしていない場合 -->
 <div class="home-container center row">
-  <div class="col-lg-12 col-md-6 col-xs-12 welcome-wrapper">
-    <div class="">
+  <!-- タイトル -->
+  <div class="col-lg-12 col-md-12 col-xs-12 welcome-wrapper">
+    <div>
       <div class="welcome-message">Welcome to Anime Searcher!</div>
       <div class="welcome-message-subtitle">あなただけのアニメリストを作って共有。隠れた名作に出会えるかも…？</div>
     </div>
   </div>
 
-  <div class="col-lg-4 col-md-6 col-xs-12">
-    <div class="btns-wrapper">
-      <div class="title-small"><i class="fas fa-search" style="margin-right:5px"></i>新しいアニメを探す</div>
-      <%= link_to image_tag(asset_path("home.png"),
-                          class: "img-balancer", alt: "Home_image", height: "300px", width: "220px"), animes_path %>
-      <div class="" style="color:gray; margin-bottom: 20px;">クリック！↑</div>
+  <!-- サイトコンテンツ -->
+  <div class="row contents-container">
+    <div class="col-lg-12 col-md-6 col-xs-12 welcome-wrapper">
+      <h1 class="page-title" style="color:gray; text-decoration: underline;">コンテンツ</h1>
     </div>
-  </div>
 
-  <div class="col-lg-4 col-md-6 col-xs-12">
-    <div class="btns-wrapper">
-      <div class="title-small"><i class="far fa-address-card" style="margin-right:5px"></i>Myアニメリストをつくる</div>
-      <div class="btn-original rounded">
-        <!-- ゲストログイン画面に移行　-->
-        <%#= link_to "ゲストログイン（閲覧用）", users_guest_sign_in_path, method: :post %>
-        <%#= link_to "ゲストログイン", guest_path, method: :post, class: "btn btn-lg btn-info" %>
-        <%= link_to "ゲストログイン", guest_path, method: :post, class: "btn-login-extend", style:"background-color:#F08080" %>
-      </div><br />
+    <div class="col-lg-4 col-md-6 col-xs-12">
+      <div class="btns-wrapper">
+        <div class="title-small"><i class="fas fa-search" style="margin-right:5px"></i>新しいアニメを探す</div>
+        <div class="btn-original rounded">
+          <%= link_to "アニメ一覧", animes_path, class: "btn-login-extend", style: "margin-bottom:20px;" %>
+        </div>
+        <%= link_to image_tag(asset_path("home.png"),
+                            class: "img-balancer", alt: "Home_image", height: "300px", width: "220px"), anime_path(id: 12) %>
+        <div class="" style="color:gray; margin-bottom: 20px;">クリック！↑</div>
+      </div>
+    </div>
 
-      <div class="btn-original rounded">
-        <!-- 新規登録画面に移行　-->
-        <%#= link_to "新規登録", new_user_registration_path, class: 'post' %>
-        <%= link_to "アカウント登録", signup_path, class: "btn-login-extend" %>
-      </div><br />
+    <div class="col-lg-4 col-md-6 col-xs-12">
+      <div class="btns-wrapper">
+        <div class="title-small"><i class="far fa-address-card" style="margin-right:5px"></i>Myアニメリストをつくる</div>
+        <div class="btn-original rounded">
+          <!-- ゲストログイン画面に移行　-->
+          <%= link_to "ゲストログイン", guest_path, method: :post, class: "btn-login-extend", style:"background:#8B0000;" %>
+        </div><br />
+        <div class="btn-original rounded">
+          <!-- 新規登録画面に移行　-->
+          <%= link_to signup_path, class: "btn-login-extend" do %>
+            <i class="fas fa-user-check" style="margin-right:5px"></i>アカウント登録
+          <% end %>
+        </div><br />
+        <div class="btn-original rounded">
+          <!-- ログイン画面に移行　-->
+          <%= link_to login_path, class: "btn-login-extend" do %>
+            <i class="fas fa-lock" style="margin-right:10px"></i>ログイン
+          <% end %>
+        </div>
+      </div>
+    </div>
 
-      <div class="btn-original rounded">
-        <!-- ログイン画面に移行　-->
-        <%#= link_to "ログイン", new_user_session_path, class: 'post' %>
-        <%= link_to "ログイン", login_path, class: "btn-login-extend" %>
+    <div class="col-lg-4 col-md-6 col-xs-12">
+      <div class="btns-wrapper">
+        <div class="title-small"><i class="fas fa-search" style="margin-right:5px"></i>他のアニメリストをみる</div>
+          <div class="btn-original rounded">
+            <%= link_to "登録ユーザー", users_path, class: "btn-login-extend" %>
+          </div>
       </div>
     </div>
   </div>
 
-  <div class="col-lg-4 col-md-6 col-xs-12">
-    <div class="btns-wrapper">
-      <div class="title-small"><i class="fas fa-search" style="margin-right:5px"></i>他のアニメリストをみる</div>
-        <div class="btn-original rounded">
-          <%= link_to "登録ユーザー", users_path, class: "btn-login-extend" %>
-        </div>
+  <!-- ご利用方法 -->
+  <div class="row contents-container" style="width:100%;">
+    <div class="col-lg-12 col-md-12 col-xs-12 welcome-wrapper">
+      <h1 class="page-title" style="color:gray; text-decoration: underline;">ご利用方法</h1>
+    </div>
+    <div class="col-lg-12 col-md-12 col-xs-12">
+      <!-- <div class="btns-wrapper" style="width:auto;"> -->
+        <p class="page-title" style="font-size:18px; color:gray; text-align: left;">
+          １. <strong style="text-decoration: underline;">「アニメ一覧」から好きなアニメを検索！</strong>
+        </p>
+        <p class="page-title" style="font-size:18px; color:gray; text-align: left;">
+          ２. <strong style="text-decoration: underline;">「アカウント登録」すると、自分だけのお気に入りアニメリストを作成可能！</strong>
+        </p>
+        <p class="page-title" style="font-size:18px; color:gray; text-align: left;">
+          ３. <strong style="text-decoration: underline;">「登録ユーザー」から他のユーザーのアニメリストを覗いて参考に！</strong>
+        </p>
+        <p class="page-title" style="font-size:18px; color:gray; text-align: left;">
+          ４. <strong style="text-decoration: underline;">気になったユーザーはフォローできます！(※登録済みのユーザーのみ)</strong>
+        </p>
+      <!-- </div> -->
     </div>
   </div>
+
 </div>
-
-<%# end %>
-
-<!-- <script>
-  $(window).on('load', function() {
-    $('body').addClass('bg-dark');
-  });
-</script>
-
-<br>
-<button type="button" class="btn btn-primary" onclick="$('.toast').toast('show')">トーストを表示する</button>
-<div class="toast" data-delay="3000" role="alert" aria-live="assertive" aria-atomic="true">
-  <div class="toast-header">
-    <img src="https://www.petitmonte.com/images/manabu.gif" class="mr-2" alt="">
-    <strong class="mr-auto">タイトル</strong>
-    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="toast-body">
-    メッセージをココに記述する。
-  </div>
-</div> -->

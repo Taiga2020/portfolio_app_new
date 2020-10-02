@@ -30,6 +30,15 @@ textarea {
   margin-bottom: 2rem;
 }
 
+.btn-notice {
+  a {
+    color:white;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -59,15 +68,19 @@ p {
 
 /* header */
 
-.navbar-brand {
-}
-
-.navbar-light {
-}
-
 .nav-item {
+  // display: block;
   padding-right: 5px;
   padding-left: 5px;
+  // :hover {
+  //   background-color: #ba5050;
+  // }
+}
+
+.btn-login {
+  display: inline-block;
+  background-color: #F08080;
+  border-radius: 0.3em;
 }
 
 /* デバッグ表示 */
@@ -126,6 +139,12 @@ $gray-medium-light: #eaeaea;
   margin-bottom: 20px;
 }
 
+.contents-container {
+  background-color: #faf5fa;
+  border-radius: 0.3em;
+  margin: 5px;
+}
+
 .title-small {
   display: inline-block;
   text-align: center;
@@ -134,7 +153,6 @@ $gray-medium-light: #eaeaea;
   background-color: gray;
   color: white;
   font-weight: bold;
-  margin-top: 10px;
   margin-bottom: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -151,30 +169,41 @@ $gray-medium-light: #eaeaea;
   display: inline-block;
   width: 290px;
   margin-top: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
   background-color: #e9ecef;
   border-radius: 0.3em;
 }
 
 .btn-original {
+  // display: inline-block;
+  // background-color: #F08080;
+  // width: 200px;
+  // padding-top: 12px;
+  // height: 50px;
+  // font-size: 1.2rem;
+  // margin-bottom: 20px;
+  a {
+    color: white;
+  }
+  a:hover {
+    color: white;
+    background: #ba5050;
+    text-decoration: none;
+  }
+}
+
+.btn-login-extend {
   display: inline-block;
   background-color: #F08080;
   width: 200px;
   padding-top: 12px;
   height: 50px;
   font-size: 1.2rem;
-  margin-bottom: 20px;
-  a {
-    color: white;
-  }
-  a:hover {
-    color: #8B0000;
-    text-decoration: none;
-  }
-}
-
-.btn-login-extend {
+  // margin-bottom: 20px;
+  border-radius: 0.3em;
   color: white;
-  float: center;
+  text-decoration: none;
 }
 
 .btn-login-extend:hover {
@@ -301,7 +330,18 @@ $gray-medium-light: #eaeaea;
   color: #e54747;
 }
 
+.favorites-count {
+  font-size: 20px;
+  color: red;
+}
+
 /* ユーザー画面(マイページ) */
+
+.userinfo-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
 .animes-fav {
   background-color: #F08080;
   border-radius: 0.3em;

@@ -12,7 +12,7 @@ RSpec.describe "SiteLayouts", type: :feature do
       expect(page).to have_link 'My Profile', href: about_path
     end
     it "contains animes link" do
-      expect(page).to have_link 'アニメ検索', href: animes_path
+      expect(page).to have_link 'アニメ一覧', href: animes_path
     end
     it "contains users link" do
       expect(page).to have_link '登録ユーザー', href: users_path
