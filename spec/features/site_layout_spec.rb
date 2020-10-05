@@ -8,9 +8,6 @@ RSpec.describe "SiteLayouts", type: :feature do
     it "contains root link" do
       expect(page).to have_link nil, href: root_path, count: 2
     end
-    it "contains about link" do
-      expect(page).to have_link 'My Profile', href: about_path
-    end
     it "contains animes link" do
       expect(page).to have_link 'アニメ一覧', href: animes_path
     end
