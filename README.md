@@ -1,7 +1,6 @@
 # 好きなアニメを共有するサービス「Anime Searcher」
 Anime Searcherとは同じアニメが好きなユーザー同士をつなぐサービスです。</br>
 また、つながったユーザーを介して新しいアニメを開拓できます。</br>
-さあ、新しい発見＆出会いが貴方を待っています！
 
 # 本番環境
 AWS上で運用・公開しています。【URL: https://www.animesearcher.com 】
@@ -36,7 +35,7 @@ AWS上で運用・公開しています。【URL: https://www.animesearcher.com 
 
 * Nginx
 
-* エディター
+* Editor
 
   * vim
 
