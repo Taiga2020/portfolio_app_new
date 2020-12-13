@@ -5,7 +5,7 @@ Anime Searcherとは同じアニメが好きなユーザー同士をつなぐサ
 
 # 本番環境
 AWS上で運用・公開しています。【URL: https://www.animesearcher.com 】
-<br/><br/>
+<br/>
 
 # 開発構成図
 
@@ -41,12 +41,22 @@ AWS上で運用・公開しています。【URL: https://www.animesearcher.com 
 
   * vim
 
-# README
+# クラウドアーキテクチャ
+AWSでインフラ構築をする際には次の２つのポイントを意識しています。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* 堅牢性
+外部からの侵入を防ぐために
+・IAMユーザー・ロール権限を最小化（１ユーザー１ポリシーをなるべく守る）
+を行っています。
 
-Things you may want to cover:
+* 保守性
+保守コストが低くなるように設計をしています。
+具体的には、
+・開発環境、テスト環境、本番環境で一貫してDockerコンテナを使用することにより環境差異を最小化
+・Route53、ELBを挟むことでWEB, APサーバとHTTPリクエスト処理の疎結合を保ち、実行コンテナとHTTPリクエストの結合を考える必要を無くす
+などの設計をしています。
+
+# Railsアプリケーション機能一覧
 
 * Ruby version
 
