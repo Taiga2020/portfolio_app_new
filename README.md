@@ -1,4 +1,11 @@
-# README
+# 好きなアニメを共有するサービス「Anime Searcher」
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+# 本番環境
+AWSで運用しています。【URL: https://www.animesearcher.com 】
+
+# 開発構成図
 
 ![develpment-diagram-test (2)](https://user-images.githubusercontent.com/63719647/102009574-adbc4280-3d7b-11eb-96e6-47eba4c0a467.png)
 
